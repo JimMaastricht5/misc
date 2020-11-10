@@ -1,0 +1,17 @@
+from gcloud import storage
+
+client = storage.client()
+# add project ID, OAuth2 creds, 
+
+bucket = client.get_bucket('yourbucketname')
+
+blob = bucket.blob("filenametosave")
+
+# up load a photo
+with open ('photo.jpg', 'rb') as photo:
+  blob.upload_from_file(photo)
+  
+  # make public needed? 
+  blob.make_public()
+  # reference to object
+  url = blob.public_url
